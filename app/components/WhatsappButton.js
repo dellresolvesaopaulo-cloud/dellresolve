@@ -9,7 +9,7 @@ export default function WhatsappButton() {
       target="_blank"
       className="fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-full shadow-xl"
     >
-      WhatsApp
+      WhatsApp: "5511946674001"
     </a>
 
   )

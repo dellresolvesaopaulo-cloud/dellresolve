@@ -1,137 +1,96 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import siteConfig from "../config/site";
+import Link from "next/link";
 
 export default function HeroAnimation() {
 
-  return (
+return (
 
-    <section className="relative overflow-hidden bg-gradient-to-r from-[#4f8fb0] via-[#5fa9c6] to-[#6aa7c3] text-white">
+<section className="relative py-28 text-white">
 
-      {/* LUZ RADIAL */}
+<div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
 
-      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
-      <div className="absolute top-40 right-0 w-[400px] h-[400px] bg-white/10 rounded-full blur-3xl"></div>
+{/* TEXTO HERO */}
 
-      <div className="relative max-w-6xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-16 items-center">
+<div>
 
-        {/* TEXTO */}
+<h1 className="text-4xl md:text-5xl font-bold leading-tight">
+Assistência Técnica Especializada em Notebook Dell
+</h1>
 
-        <div>
+<p className="mt-6 text-lg text-white/90">
+Diagnóstico profissional, reparo avançado e peças de qualidade para notebooks Dell na Zona Norte de São Paulo.
+</p>
 
-          <span className="inline-block text-sm bg-white/20 px-4 py-1 rounded-full mb-6 backdrop-blur">
-            Assistência Técnica Profissional Notebook Dell
-          </span>
+<div className="flex gap-6 mt-10">
 
-          <motion.h1
-            initial={{ opacity:0, y:20 }}
-            animate={{ opacity:1, y:0 }}
-            transition={{ duration:0.6 }}
-            className="text-4xl md:text-5xl font-bold leading-tight"
-          >
-            Assistência Técnica Especializada em Notebook Dell
-          </motion.h1>
+<a
+href={`https://wa.me/${siteConfig.whatsapp}`}
+className="bg-green-500 hover:bg-green-600 px-8 py-4 rounded-lg font-semibold shadow-lg"
+>
+Falar no WhatsApp
+</a>
 
-          <p className="mt-6 text-white/90 text-lg">
-            Orçamento sem custo, peças novas e atendimento rápido
-            prioritário na Zona Norte de São Paulo.
-          </p>
+<Link
+href="/servicos"
+className="border border-white px-8 py-4 rounded-lg hover:bg-white hover:text-[#1F5F8B] transition"
+>
+Ver serviços
+</Link>
 
+</div>
 
-          {/* BOTÕES */}
-
-          <div className="mt-8 flex gap-4">
-
-            <a
-              href="https://wa.me/5511999999999"
-              className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg"
-            >
-              Falar no WhatsApp
-            </a>
-
-            <a
-              href="#servicos"
-              className="border border-white/60 px-6 py-3 rounded-lg font-semibold hover:bg-white/10"
-            >
-              Ver serviços
-            </a>
-
-          </div>
+</div>
 
 
-          {/* PROVA SOCIAL GOOGLE */}
+{/* FORMULÁRIO HERO */}
 
-          <div className="flex items-center gap-3 mt-6">
+<div className="bg-white rounded-xl shadow-xl p-8 text-gray-800">
 
-            <div className="flex text-yellow-300">
+<h3 className="text-lg font-semibold mb-6">
+Solicite atendimento agora
+</h3>
 
-              <Star size={18}/>
-              <Star size={18}/>
-              <Star size={18}/>
-              <Star size={18}/>
-              <Star size={18}/>
+<form className="flex flex-col gap-4">
 
-            </div>
+<input
+type="text"
+placeholder="Seu nome"
+className="border rounded-lg px-4 py-3"
+/>
 
-            <span className="text-sm text-white/90">
-              Avaliação <strong>4.9 / 5</strong> no Google • mais de 200 avaliações
-            </span>
+<input
+type="text"
+placeholder="WhatsApp com DDD"
+className="border rounded-lg px-4 py-3"
+/>
 
-          </div>
+<input
+type="email"
+placeholder="E-mail (opcional)"
+className="border rounded-lg px-4 py-3"
+/>
 
-        </div>
+<textarea
+placeholder="Meu notebook Dell não liga."
+className="border rounded-lg px-4 py-3"
+/>
 
+<button
+type="submit"
+className="bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-semibold"
+>
+Receber orçamento no WhatsApp
+</button>
 
-        {/* FORMULÁRIO */}
+</form>
 
-        <motion.div
-          initial={{ opacity:0, scale:0.95 }}
-          animate={{ opacity:1, scale:1 }}
-          transition={{ duration:0.5 }}
-          className="bg-white/90 backdrop-blur text-gray-800 rounded-2xl shadow-2xl p-7"
-        >
+</div>
 
-          <h3 className="font-semibold text-lg mb-4">
-            Solicite atendimento agora
-          </h3>
+</div>
 
-          <div className="space-y-3">
+</section>
 
-            <input
-              className="w-full border rounded-md p-3"
-              placeholder="Seu nome"
-            />
-
-            <input
-              className="w-full border rounded-md p-3"
-              placeholder="WhatsApp com DDD"
-            />
-
-            <input
-              className="w-full border rounded-md p-3"
-              placeholder="E-mail (opcional)"
-            />
-
-            <textarea
-              className="w-full border rounded-md p-3"
-              placeholder="Meu notebook Dell não liga."
-            />
-
-            <button
-              className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-md font-semibold shadow-md"
-            >
-              Receber orçamento no WhatsApp
-            </button>
-
-          </div>
-
-        </motion.div>
-
-      </div>
-
-    </section>
-
-  );
-
+);
 }

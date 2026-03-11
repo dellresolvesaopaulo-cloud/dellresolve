@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 
 import {
@@ -11,19 +10,12 @@ Cpu,
 MemoryStick,
 Wind,
 Search,
-Menu,
-X,
-MapPin,
-Phone,
-MessageCircle,
 BadgeCheck,
 ShieldCheck,
 CreditCard
 } from "lucide-react";
 
-import { motion } from "framer-motion";
-
-import HeroAnimation from "./components/HeroAnimation";
+import HeroSection from "./components/HeroSection";
 import GoogleReviews from "./components/GoogleReviews";
 import ServiceCard from "./components/ServiceCard";
 import TrustItem from "./components/TrustItem";
@@ -35,79 +27,18 @@ export default function Home() {
 
 const [menuOpen, setMenuOpen] = useState(false);
 
+const trackWhatsAppClick = (label) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "click_whatsapp", {
+      event_category: "engagement",
+      event_label: label
+    });
+  }
+};
+
 return (
 
 <main className="min-h-screen bg-white">
-
-{/* HEADER */}
-
-<header className="border-b bg-white/80 backdrop-blur sticky top-0 z-50">
-
-<div className="max-w-6xl mx-auto flex justify-between items-center py-5 px-6">
-
-<Link href="/" className="flex items-center gap-2">
-
-<Image
-src="/lamp.svg"
-alt="Dell Resolve"
-width={34}
-height={34}
-/>
-
-<h1 className="text-xl md:text-2xl font-bold tracking-wide">
-
-<span style={{color:"#5FA9C6"}}>DELL</span>
-<span style={{color:"#1F5F8B"}}> RESOLVE</span>
-
-</h1>
-
-</Link>
-
-
-<nav className="hidden md:flex space-x-10 text-sm font-medium text-gray-700">
-
-<a href="#">Início</a>
-<a href="#">Serviços</a>
-<a href="#">Blog</a>
-<a href="#">Contato</a>
-
-</nav>
-
-<button
-className="md:hidden"
-onClick={() => setMenuOpen(!menuOpen)}
->
-
-{menuOpen ? <X size={28}/> : <Menu size={28}/>}
-
-</button>
-
-</div>
-
-
-{menuOpen && (
-
-<motion.div
-initial={{ opacity:0, y:-20 }}
-animate={{ opacity:1, y:0 }}
-className="md:hidden bg-white border-t"
->
-
-<div className="flex flex-col p-6 space-y-4 text-lg">
-
-<a href="#">Início</a>
-<a href="#">Serviços</a>
-<a href="#">Blog</a>
-<a href="#">Contato</a>
-
-</div>
-
-</motion.div>
-
-)}
-
-</header>
-
 
 
 {/* HERO */}
@@ -116,16 +47,14 @@ className="md:hidden bg-white border-t"
 
 <div className="absolute inset-0 bg-gradient-to-r from-[#5FA9C6] to-[#1F5F8B] opacity-90"></div>
 
-<HeroAnimation />
+<HeroSection />
 
 </section>
-
 
 
 {/* LINHA DELL */}
 
 <DellModels />
-
 
 
 {/* PROBLEMAS */}
@@ -150,6 +79,7 @@ ou simplesmente não liga.
 
 <a
 href={`https://wa.me/${siteConfig.whatsapp}`}
+onClick={() => trackWhatsAppClick("Hero WhatsApp Button")}
 className="inline-block mt-8 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-semibold shadow-lg"
 >
 Chamar no WhatsApp agora
@@ -158,7 +88,6 @@ Chamar no WhatsApp agora
 </div>
 
 </section>
-
 
 
 {/* SERVIÇOS */}
@@ -172,7 +101,7 @@ Serviços Dell
 </h3>
 
 <p className="text-center text-gray-600 mt-4">
-Especialistas em reparo e manutenção de notebooks Dell.
+Especialistas Profissionais em reparo e manutenção de notebooks Dell.
 </p>
 
 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mt-16">
@@ -208,7 +137,6 @@ Análise completa do equipamento com orçamento detalhado.
 </section>
 
 
-
 {/* CONFIANÇA */}
 
 <section className="py-20 bg-white">
@@ -226,15 +154,15 @@ Especialistas em equipamentos Dell
 </TrustItem>
 
 <TrustItem icon={<ShieldCheck size={36}/>}>
-Peças originais garantidas
+Peças novas e originais garantidas
 </TrustItem>
 
 <TrustItem icon={<ShieldCheck size={36}/>}>
-Garantia de até 6 meses
+Garantia de até 6 meses ou até 9 meses (consulte antes)
 </TrustItem>
 
 <TrustItem icon={<CreditCard size={36}/>}>
-Pagamento facilitado
+Pagamento facilitado em até 10x (consulte antes)
 </TrustItem>
 
 </div>
@@ -242,7 +170,6 @@ Pagamento facilitado
 </div>
 
 </section>
-
 
 
 {/* GOOGLE REVIEWS */}
@@ -268,7 +195,6 @@ Veja o que nossos clientes dizem no Google.
 </div>
 
 </section>
-
 
 
 {/* MAPA */}
@@ -305,86 +231,11 @@ referrerPolicy="no-referrer-when-downgrade"
 </section>
 
 
-
-{/* FOOTER */}
-
-<footer className="bg-[#0f172a] text-white py-16">
-
-<div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-
-<div>
-
-<h4 className="font-bold text-lg mb-4">
-Dell Resolve
-</h4>
-
-<p className="text-gray-300">
-Assistência técnica especializada em notebooks Dell em São Paulo.
-</p>
-
-</div>
-
-
-<div>
-
-<h4 className="font-bold text-lg mb-4">
-Bairros atendidos
-</h4>
-
-<ul className="space-y-2 text-gray-300">
-
-<li>Santana</li>
-<li>Tucuruvi</li>
-<li>Casa Verde</li>
-<li>Mandaqui</li>
-<li>Parada Inglesa</li>
-
-</ul>
-
-</div>
-
-
-<div>
-
-<h4 className="font-bold text-lg mb-4">
-Contato
-</h4>
-
-<div className="space-y-3 text-gray-300">
-
-<p className="flex items-center gap-2">
-<MapPin size={18}/>
-{siteConfig.address.street} • {siteConfig.address.city}
-</p>
-
-<p className="flex items-center gap-2">
-<Phone size={18}/>
-{siteConfig.phone}
-</p>
-
-<p className="flex items-center gap-2">
-<MessageCircle size={18}/>
-WhatsApp
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div className="text-center text-gray-400 mt-10 text-sm">
-© 2026 Dell Resolve • Todos os direitos reservados
-</div>
-
-</footer>
-
-
-
-{/* BOTÃO WHATSAPP */}
+{/* BOTÃO WHATSAPP FLUTUANTE */}
 
 <a
 href={`https://wa.me/${siteConfig.whatsapp}`}
+onClick={() => trackWhatsAppClick("Floating WhatsApp Button")}
 className="fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-full shadow-xl"
 >
 WhatsApp
