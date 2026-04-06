@@ -1,6 +1,10 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eu
+
+if (set -o pipefail) >/dev/null 2>&1; then
+  set -o pipefail
+fi
 
 APP_NAME="dellresolve"
 
