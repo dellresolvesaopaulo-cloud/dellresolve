@@ -1,77 +1,73 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Star } from "lucide-react"
 
 export default function GoogleReviews() {
 
-  const [data, setData] = useState<any>(null)
+  const [reviews, setReviews] = useState([])
+  const [rating, setRating] = useState(0)
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
+
     fetch("/api/google-reviews")
       .then(res => res.json())
-      .then(setData)
-  }, [])
+      .then(data => {
 
-  if (!data) return null
+        if (data.result) {
+          setReviews(data.result.reviews || [])
+          setRating(data.result.rating || 0)
+          setTotal(data.result.user_ratings_total || 0)
+        }
+
+      })
+
+  }, [])
 
   return (
 
-    <div>
+    <div className="text-center">
 
-      {/* NOTA */}
-      <div className="flex flex-col items-center mb-10">
-
-        <div className="flex text-yellow-500">
-
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} size={20} fill="currentColor"/>
-          ))}
-
-        </div>
-
-        <p className="mt-2 text-gray-700">
-          <span className="font-semibold">{data.rating}</span> estrelas • {data.userRatingCount} avaliações
-        </p>
-
+      <div className="text-yellow-500 text-xl mb-2">
+        {"★".repeat(Math.round(rating))}
       </div>
 
+      <p className="text-gray-600 mb-10">
+        {rating} estrelas • {total} avaliações
+      </p>
 
-      {/* REVIEWS */}
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-3 gap-6">
 
-        {data.reviews?.slice(0,3).map((review:any, i:number) => (
+        {reviews.slice(0,3).map((r, i) => (
 
-          <div key={i} className="bg-white p-8 rounded-2xl shadow border">
+          <div
+            key={i}
+            className="bg-white rounded-xl shadow p-6 text-left"
+          >
 
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-3">
 
               <img
-                src={review.authorAttribution.photoUri}
-                alt={review.authorAttribution.displayName}
+                src={r.profile_photo_url}
                 className="w-10 h-10 rounded-full"
               />
 
-              <div className="text-left">
+              <div>
 
-                <p className="font-semibold text-sm">
-                  {review.authorAttribution.displayName}
+                <p className="font-semibold">
+                  {r.author_name}
                 </p>
 
-                <div className="flex text-yellow-500">
-
-                  {Array.from({ length: review.rating }).map((_, i) => (
-                    <Star key={i} size={14} fill="currentColor"/>
-                  ))}
-
-                </div>
+                <p className="text-yellow-500">
+                  {"★".repeat(r.rating)}
+                </p>
 
               </div>
 
             </div>
 
-            <p className="text-gray-600 text-sm">
-              {review.text.text}
+            <p className="text-gray-700 text-sm">
+              {r.text}
             </p>
 
           </div>
@@ -83,4 +79,5 @@ export default function GoogleReviews() {
     </div>
 
   )
+
 }

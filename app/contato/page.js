@@ -2,6 +2,7 @@
 
 import siteConfig from "../config/site"
 import { MapPin, Phone, MessageCircle } from "lucide-react"
+import MapaZonaNorte from "../components/MapaZonaNorte"
 
 export default function Contato() {
 
@@ -89,7 +90,7 @@ export default function Contato() {
 
                 <a
                   href={`https://wa.me/${siteConfig.whatsapp}`}
-                  className="text-green-600"
+                  className="text-green-600 hover:underline"
                 >
                   Iniciar conversa
                 </a>
@@ -119,22 +120,12 @@ export default function Contato() {
 
         </div>
 
-
-        {/* MAPA */}
-
-        <div className="mt-20 rounded-xl overflow-hidden shadow-lg">
-
-          <iframe
-            src={siteConfig.googleMapsEmbed}
-            width="100%"
-            height="420"
-            style={{ border: 0 }}
-            loading="lazy"
-          ></iframe>
-
-        </div>
-
       </div>
+
+
+      {/* MAPA ZONA NORTE */}
+
+      <MapaZonaNorte />
 
     </main>
 

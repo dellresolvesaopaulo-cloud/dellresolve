@@ -24,3 +24,77 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
+
+
+/* correção global de contraste */
+
+body{
+color:#1f2937;
+background:#ffffff;
+}
+
+/* placeholders visíveis */
+
+input::placeholder,
+textarea::placeholder{
+color:#9ca3af;
+opacity:1;
+}
+
+/* inputs legíveis */
+
+input,
+textarea{
+color:#111827;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.btn-google {
+  background: #dc2626;
+  color: white;
+  padding: 14px;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-google:hover {
+  background: #b91c1c;
+}
+
+
+

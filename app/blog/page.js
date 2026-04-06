@@ -1,74 +1,92 @@
+import { createClient } from "@supabase/supabase-js"
 import Link from "next/link"
 
-export default function Blog() {
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+)
 
-  const posts = [
+export default async function Blog() {
 
-    {
-      slug: "notebook-dell-nao-liga",
-      title: "Notebook Dell não liga: principais causas",
-      excerpt:
-        "Veja os principais motivos que fazem um notebook Dell não ligar e quando procurar assistência técnica."
-    },
+  const { data: posts } = await supabase
+    .from("posts")
+    .select("*")
+    .order("created_at", { ascending: false })
 
-    {
-      slug: "notebook-dell-lento",
-      title: "Notebook Dell muito lento? Veja como resolver",
-      excerpt:
-        "Saiba como melhorar o desempenho do seu notebook Dell com upgrade de SSD e memória."
-    },
+  if (!posts) {
+    return <div style={{ padding: 40 }}>Erro ao carregar</div>
+  }
 
-    {
-      slug: "dell-nao-reconhece-carregador",
-      title: "Dell não reconhece carregador",
-      excerpt:
-        "Problema comum em notebooks Dell pode estar relacionado ao carregador ou placa-mãe."
-    }
-
-  ]
+  // 🔥 gera categorias únicas
+  const categorias = [...new Set(posts.map(p => p.categoria))]
 
   return (
-
     <main className="min-h-screen bg-white py-20">
 
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10">
 
-        <h1 className="text-4xl font-bold text-center text-[#1F5F8B]">
-          Blog técnico Dell
-        </h1>
+        {/* CONTEÚDO */}
+        <div className="md:col-span-2">
 
-        <p className="text-center text-gray-600 mt-4">
-          Dicas e soluções para problemas comuns em notebooks Dell.
-        </p>
+          <h1 className="text-4xl font-bold text-[#1F5F8B] mb-10">
+            Blog técnico Dell
+          </h1>
 
-        <div className="grid md:grid-cols-2 gap-10 mt-16">
+          <div className="space-y-8">
 
-          {posts.map((post) => (
+            {posts.map((post, i) => (
+              <div key={i} className="border p-6 rounded">
 
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="border rounded-xl p-8 hover:shadow-lg transition"
-            >
+                <Link href={`/blog/${post.slug}`}>
+                  <h2 className="text-xl font-semibold text-blue-600">
+                    {post.titulo}
+                  </h2>
+                </Link>
 
-              <h2 className="text-xl font-semibold mb-3">
-                {post.title}
-              </h2>
+                <p className="text-gray-600 mt-2">
+                  {post.descricao}
+                </p>
 
-              <p className="text-gray-600 text-sm">
-                {post.excerpt}
-              </p>
+                <Link
+                  href={`/categoria/${post.categoria}`}
+                  className="text-sm text-blue-500 mt-2 inline-block"
+                >
+                  {post.categoria}
+                </Link>
 
-            </Link>
+              </div>
+            ))}
 
-          ))}
+          </div>
 
         </div>
+
+        {/* SIDEBAR */}
+        <aside>
+
+          <h2 className="text-xl font-bold mb-4">
+            Categorias
+          </h2>
+
+          <ul className="space-y-2">
+
+            {categorias.map((cat, i) => (
+              <li key={i}>
+                <Link
+                  href={`/categoria/${cat}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {cat}
+                </Link>
+              </li>
+            ))}
+
+          </ul>
+
+        </aside>
 
       </div>
 
     </main>
-
   )
-
 }

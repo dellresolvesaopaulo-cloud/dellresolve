@@ -1,4 +1,7 @@
 import { HardDrive, Monitor, Cpu, MemoryStick, Wind, Search } from "lucide-react"
+import MapaZonaNorte from "../components/MapaZonaNorte"
+import BairrosAtendidos from "../components/BairrosAtendidos"
+import FaqDell from "../components/FaqDell"
 
 export default function Servicos() {
 
@@ -85,6 +88,12 @@ export default function Servicos() {
         </div>
 
       </div>
+
+      {/* Seção mapa */}
+      <MapaZonaNorte />
+
+<BairrosAtendidos />
+<FaqDell />
 
     </main>
 

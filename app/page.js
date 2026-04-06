@@ -101,34 +101,34 @@ Serviços Dell
 </h3>
 
 <p className="text-center text-gray-600 mt-4">
-Especialistas Profissionais em reparo e manutenção de notebooks Dell.
-</p>
+            Especialistas Profissionais em reparo e manutenção de notebooks Dell.
+          </p>
 
 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mt-16">
 
-<ServiceCard icon={<HardDrive size={26} />} title="Troca de SSD">
-Upgrade de armazenamento para deixar seu notebook muito mais rápido.
-</ServiceCard>
+<ServiceCard icon={<HardDrive size={26}/>} title="Troca de SSD">
+              Upgrade de armazenamento para deixar seu notebook até 10x muito mais rápido.
+            </ServiceCard>
 
-<ServiceCard icon={<Monitor size={26} />} title="Troca de Tela">
-Substituição de telas quebradas ou com defeito.
-</ServiceCard>
+            <ServiceCard icon={<Monitor size={26}/>} title="Troca de Tela">
+              Substituição de telas LCD/LED quebrada ou com defeito.
+            </ServiceCard>
 
-<ServiceCard icon={<Cpu size={26} />} title="Reparo de Placa">
-Diagnóstico e reparo avançado de placa-mãe Dell.
-</ServiceCard>
+            <ServiceCard icon={<Cpu size={26}/>} title="Reparo de Placa">
+              Diagnóstico e reparo avançado de placa-mãe Dell genuína.
+            </ServiceCard>
 
-<ServiceCard icon={<MemoryStick size={26} />} title="Upgrade de Memória">
-Aumento de RAM para melhorar desempenho do sistema.
-</ServiceCard>
+            <ServiceCard icon={<MemoryStick size={26}/>} title="Upgrade de Memória">
+              Aumento/upgrade de memória RAM para otimizar o desempenho do sistema.
+            </ServiceCard>
 
-<ServiceCard icon={<Wind size={26} />} title="Limpeza Interna">
-Limpeza e manutenção preventiva do sistema de refrigeração.
-</ServiceCard>
+            <ServiceCard icon={<Wind size={26}/>} title="Limpeza Interna">
+              Limpeza e manutenção preventiva do sistema de refrigeração e dissipação.
+            </ServiceCard>
 
-<ServiceCard icon={<Search size={26} />} title="Diagnóstico Técnico">
-Análise completa do equipamento com orçamento detalhado.
-</ServiceCard>
+            <ServiceCard icon={<Search size={26}/>} title="Diagnóstico Técnico">
+              Análise completa do equipamento com orçamento detalhado.
+            </ServiceCard>
 
 </div>
 
@@ -150,20 +150,20 @@ Mais de 2000 notebooks Dell reparados
 <div className="grid md:grid-cols-4 gap-10 mt-14">
 
 <TrustItem icon={<BadgeCheck size={36}/>}>
-Especialistas em equipamentos Dell
-</TrustItem>
+              Profissionais em equipamentos Dell
+            </TrustItem>
 
-<TrustItem icon={<ShieldCheck size={36}/>}>
-Peças novas e originais garantidas
-</TrustItem>
+            <TrustItem icon={<ShieldCheck size={36}/>}>
+              Peças novas e originais garantidas direto do fabricante
+            </TrustItem>
 
-<TrustItem icon={<ShieldCheck size={36}/>}>
-Garantia de até 6 meses ou até 9 meses (consulte antes)
-</TrustItem>
+            <TrustItem icon={<ShieldCheck size={36}/>}>
+              Garantia de até 6 meses ou até 9 meses (consulte antes)
+            </TrustItem>
 
-<TrustItem icon={<CreditCard size={36}/>}>
-Pagamento facilitado em até 10x (consulte antes)
-</TrustItem>
+            <TrustItem icon={<CreditCard size={36}/>}>
+              Pagamento facilitado em até 10x (consulte antes)
+            </TrustItem>
 
 </div>
 
@@ -208,10 +208,9 @@ Estamos na Zona Norte de São Paulo
 </h3>
 
 <p className="mt-4 text-gray-600">
-Atendimento especializado em notebooks Dell
-para Santana, Tucuruvi, Casa Verde,
-Mandaqui e região.
-</p>
+            Atendimento especializado em notebooks Dell
+            para Santana, Tucuruvi, Casa Verde, Mandaqui, Tremembé, Jd. São Paulo, Parada Inglesa, Lauzane Paulista, Cachoeirinha, Limão, Imirim, Vila Guilherme, Guarulhos, Mairiporã, Lapa, Barra Funda, Perus, Paulista, Faria Lima, Aeroporto, Jd. Europa, Jd. Paulista, Vila Olímpia, Moema e região e + Coleta e entrega programada (consulte antes).
+          </p>
 
 <div className="mt-12 rounded-xl overflow-hidden shadow-lg">
 
@@ -231,15 +230,7 @@ referrerPolicy="no-referrer-when-downgrade"
 </section>
 
 
-{/* BOTÃO WHATSAPP FLUTUANTE */}
 
-<a
-href={`https://wa.me/${siteConfig.whatsapp}`}
-onClick={() => trackWhatsAppClick("Floating WhatsApp Button")}
-className="fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-full shadow-xl"
->
-WhatsApp
-</a>
 
 </main>
 
