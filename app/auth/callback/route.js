@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { createSupabaseServer } from "../../../lib/supabaseServer"
+import { createServerClient } from "@supabase/ssr"
 import { getRequestSiteUrl } from "../../../lib/siteUrl"
 
 export const dynamic = "force-dynamic"
@@ -21,7 +21,29 @@ export async function GET(request) {
     return NextResponse.redirect(getRequestSiteUrl(request, "/admin/login?error=missing_code"))
   }
 
-  const supabase = createSupabaseServer({ allowWriteFailure: false })
+  let response = NextResponse.redirect(getRequestSiteUrl(request, next))
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet, headersToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            response.cookies.set(name, value, options)
+          })
+
+          Object.entries(headersToSet || {}).forEach(([key, value]) => {
+            response.headers.set(key, value)
+          })
+        }
+      }
+    }
+  )
+
   const { error } = await supabase.auth.exchangeCodeForSession(code)
 
   if (error) {
@@ -29,5 +51,5 @@ export async function GET(request) {
     return NextResponse.redirect(getRequestSiteUrl(request, "/admin/login?error=auth_callback"))
   }
 
-  return NextResponse.redirect(getRequestSiteUrl(request, next))
+  return response
 }
