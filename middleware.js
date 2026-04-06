@@ -37,9 +37,13 @@ export async function middleware(request) {
 
   await supabase.auth.getUser()
 
+  response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate")
+  response.headers.set("Pragma", "no-cache")
+  response.headers.set("Expires", "0")
+
   return response
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/:path*"]
+  matcher: ["/admin/:path*", "/auth/:path*", "/api/:path*"]
 }
